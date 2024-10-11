@@ -1,0 +1,13 @@
+transformers
+emoji
+kaggle
+pandas
+matplotlib
+seaborn
+tensorflow
+wordcloud
+scikit-learn
+streamlit
+datasets
+streamlit-drawable-canvas
+numpy
