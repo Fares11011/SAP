@@ -19,20 +19,11 @@ model = tf.keras.Sequential(model_parts)
 
 # PRIDECTION FN.
 def predict_sentiment(tweet):
-    try:
-        # detect THE LANG
-        language = detect(tweet)
-        if language != 'en':
-            return "Warning: The input text is not in English."
-
-        encoding = tokenizer(tweet, truncation=True, padding=True, return_tensors='tf')
-        logits = model(encoding['input_ids'])
-        predicted_class = tf.argmax(logits, axis=-1).numpy()[0]
-        sentiment = "Positive" if predicted_class == 1 else "Negative"
-        return sentiment
-
-    except LangDetectException:
-        return "Error: Unable to detect language."
+    encoding = tokenizer(tweet, truncation=True, padding=True, return_tensors='tf')
+    logits = model(encoding['input_ids'])  
+    predicted_class = tf.argmax(logits, axis=-1).numpy()[0]
+    sentiment = "Positive" if predicted_class == 1 else "Negative"
+    return sentiment
 
 test_tweets = [
     "I love the way this app works, it's absolutely fantastic!",
